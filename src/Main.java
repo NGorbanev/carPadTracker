@@ -1,6 +1,5 @@
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle;
 
 import java.io.IOException;
 import java.net.URI;
@@ -8,15 +7,13 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-import static jdk.javadoc.internal.doclets.formats.html.markup.HtmlStyle.header;
-
 public class Main {
     public static int DEFAULT_TG_CHAT = -484021021;
     public static void main(String[] args) {
 
         LogReader lr = new LogReader();
 
-        System.out.println("Данные%20из%20последней%20записи%20в%20логе:%20%0A");
+        System.out.println("Данные из последней записи в логе:\n");
         String[] reportFull = lr.getLastKnownPosition();
         for (String part: reportFull){
             System.out.println(" - " + part.trim());
@@ -29,7 +26,6 @@ public class Main {
         report.append("%0AАвто расположено около:%20%0A");
         report.append(reportFull[7] + "%0A");
         report.append(reportFull[8] + "%0A");
-        //System.out.println(report.toString());
         sendReportToTelegram(report.toString());
 
 

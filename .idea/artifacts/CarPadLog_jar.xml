@@ -3,6 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/CarPadLog_jar</output-path>
     <root id="archive" name="CarPadLog.jar">
       <element id="module-output" name="CarPadLog" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../ExtraLibs/gson/gson-2.9.0.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

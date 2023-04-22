@@ -9,11 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee8da1d8-673a-4f47-af41-953e91b5c250" name="Changes" comment="v1 created">
+    <list default="true" id="ee8da1d8-673a-4f47-af41-953e91b5c250" name="Changes" comment="Update: v1.1&#10;- geocoder added&#10;- TG message sending added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CarPadLog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CarPadLog.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CoordsConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CoordsConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LogReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LogReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,11 +42,10 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
     "last_opened_file_path": "/Users/nikitagorbanev/Java study/CarPadLog/CarPadLog",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
   }
 }]]></component>
@@ -95,7 +91,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682198965759</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Update: v1.1&#10;- geocoder added&#10;- TG message sending added">
+      <created>1682206213605</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1682206213606</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -111,6 +114,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="v1 created" />
-    <option name="LAST_COMMIT_MESSAGE" value="v1 created" />
+    <MESSAGE value="Update: v1.1&#10;- geocoder added&#10;- TG message sending added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update: v1.1&#10;- geocoder added&#10;- TG message sending added" />
   </component>
 </project>
