@@ -16,6 +16,7 @@ public class LogReader {
     File logfile = new File(logPath.toString());
     String[] fileData;
 
+    // converter from month name from russian wording to month num
     public HashMap<String, String> getUniqueMonths(){
         loadData();
         HashMap<String, String> months = new HashMap<>();
@@ -75,18 +76,16 @@ public class LogReader {
         catch (IOException e){
             e.getMessage();
         }
-        //for (int i = 0; i < fileData.length; i++){
-        //    if (!fileData[i].isEmpty()){
-        //        String[] line = fileData[i].split(",");
-        //    }
-        //}
     }
 
+    //  Method to convert Apple automator data format to dd.MM.yyyy
     public String convertDate(String str){
         String[] parts = str.split(" ");
+        if (parts[0].trim().length() == 1) parts[0] = "0" + parts[0];
         return parts[0] + "." + getUniqueMonths().get(parts[1]) + "." + parts[2].substring(0,4);
     }
 
+    // method for getting the last known position - its the last record at csv
     public void getLastKnownPosition(){
 
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
@@ -111,6 +110,7 @@ public class LogReader {
         }
     }
 
+    // attempt to send a notification through Apple Script launched from Terminal
     public void notificationTest(){
         try {
             Process process = Runtime.getRuntime().exec(
@@ -121,6 +121,8 @@ public class LogReader {
             e.getMessage();
         }
     }
+
+    // just for demonstration of results of previous attempt
     public static void printResults(Process process) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
         String line;
