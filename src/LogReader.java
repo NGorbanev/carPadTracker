@@ -85,29 +85,33 @@ public class LogReader {
         return parts[0] + "." + getUniqueMonths().get(parts[1]) + "." + parts[2].substring(0,4);
     }
 
-    // method for getting the last known position - its the last record at csv
-    public void getLastKnownPosition(){
+    // method for getting the last known position - it's the last record at csv
+    public String[] getLastKnownPosition(){
 
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         DateTimeFormatter newFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
+        CoordsConverter cc = new CoordsConverter();
 
         loadData();
         String[] line = fileData[fileData.length-1].split(",");
-        String[] editedLine = new String[6];
+        String[] editedLine = new String[9];
         LocalDate date = LocalDate.parse(convertDate(line[1]), dateFormat);
         LocalTime time = LocalTime.parse(line[2].trim(), timeFormat);
-        editedLine[0] = line[0].trim();
-        editedLine[1] = date.format(newFormat);
-        editedLine[2] = time.toString();
-        editedLine[3] = line[3];
-        editedLine[4] = line[4];
-        editedLine[5] = line[5];
-        System.out.println("Данные из последней записи в логе: ");
-        for (String part: editedLine){
-            System.out.println(" - " + part.trim());
+        editedLine[0] = line[0].trim(); // device info
+        editedLine[1] = date.format(newFormat); // date dd.MM.yyyy
+        editedLine[2] = time.toString(); // time
+        editedLine[3] = line[3]; // lattitude (lat)
+        editedLine[4] = line[4]; // lon
+        editedLine[5] = line[5]; // type
+        editedLine[6] = "Заряд аккумулятора: " + line[6] + " процентов"; // acc charge level
 
-        }
+        ArrayList<String> nearByaddresses = cc.convert(line[4], line[3]);
+
+        editedLine[7] = nearByaddresses.get(0).substring(1, nearByaddresses.get(0).length()-1);
+        editedLine[8] = nearByaddresses.get(1).substring(1, nearByaddresses.get(1).length()-1);
+
+        return editedLine;
     }
 
     // attempt to send a notification through Apple Script launched from Terminal
