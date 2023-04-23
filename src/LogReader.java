@@ -104,7 +104,7 @@ public class LogReader {
         editedLine[3] = line[3]; // lattitude (lat)
         editedLine[4] = line[4]; // lon
         editedLine[5] = line[5]; // type
-        editedLine[6] = "Заряд аккумулятора: " + line[6] + " процентов"; // acc charge level
+        editedLine[6] = line[6]; // acc charge level
 
         ArrayList<String> nearByaddresses = cc.convert(line[4], line[3]);
 

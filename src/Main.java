@@ -22,7 +22,7 @@ public class Main {
         report.append("Данные по позиции авто:%0A");
         report.append("Источник:%20" + reportFull[0] + "%0A");
         report.append("Дата и время:%20" + reportFull[1] + " " + reportFull[2] + "%0A");
-        report.append("Заряд аккумулятора:%20" + reportFull[6] + "%0A");
+        report.append("Уровень заряда планшета:%20" + reportFull[6] + "%0A");
         report.append("%0AАвто расположено около:%20%0A");
         report.append(reportFull[7] + "%0A");
         report.append(reportFull[8] + "%0A");
