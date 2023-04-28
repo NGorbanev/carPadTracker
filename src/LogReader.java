@@ -16,6 +16,11 @@ public class LogReader {
     File logfile = new File(logPath.toString());
     String[] fileData;
 
+    public int getFileDataLength(){
+        loadData();
+        return this.fileData.length;
+    }
+
     // converter from month name from russian wording to month num
     public HashMap<String, String> getUniqueMonths(){
         loadData();
