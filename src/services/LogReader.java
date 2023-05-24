@@ -1,3 +1,5 @@
+package services;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -15,6 +17,7 @@ public class LogReader {
                     "iCloud~is~workflow~my~workflows/Documents/Logs/CariPadLog.csv");
     File logfile = new File(logPath.toString());
     String[] fileData;
+    Logger log = new Logger();
 
     public int getFileDataLength(){
         loadData();
@@ -23,6 +26,7 @@ public class LogReader {
 
     // converter from month name from russian wording to month num
     public HashMap<String, String> getUniqueMonths(){
+        log.writeLog(this, LogTypes.INFO, "Parsing month name.. ");
         loadData();
         HashMap<String, String> months = new HashMap<>();
         for (String line: fileData){
@@ -71,6 +75,7 @@ public class LogReader {
                 }
             }
         }
+        log.writeLog(this, LogTypes.INFO, "OK");
         return months;
     }
 
@@ -79,12 +84,14 @@ public class LogReader {
             fileData = Files.readString(logfile.toPath()).split(System.lineSeparator());
             }
         catch (IOException e){
+            log.writeLog(this, LogTypes.FATAL, "File reading error \n" + e.getMessage());
             e.getMessage();
         }
     }
 
     //  Method to convert Apple automator data format to dd.MM.yyyy
     public String convertDate(String str){
+        log.writeLog(this, LogTypes.INFO, "Converting month name to month num");
         String[] parts = str.split(" ");
         if (parts[0].trim().length() == 1) parts[0] = "0" + parts[0];
         return parts[0] + "." + getUniqueMonths().get(parts[1]) + "." + parts[2].substring(0,4);
@@ -93,6 +100,7 @@ public class LogReader {
     // method for getting the last known position - it's the last record at csv
     public String[] getLastKnownPosition(){
 
+        log.writeLog(this, LogTypes.INFO, "Getting last known position");
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         DateTimeFormatter newFormat = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("HH:mm");
@@ -101,6 +109,7 @@ public class LogReader {
         loadData();
         String[] line = fileData[fileData.length-1].split(",");
         String[] editedLine = new String[9];
+        log.writeLog(this, LogTypes.INFO, "Update received");
         LocalDate date = LocalDate.parse(convertDate(line[1]), dateFormat);
         LocalTime time = LocalTime.parse(line[2].trim(), timeFormat);
         editedLine[0] = line[0].trim(); // device info
@@ -115,6 +124,7 @@ public class LogReader {
 
         editedLine[7] = nearByaddresses.get(0).substring(1, nearByaddresses.get(0).length()-1);
         editedLine[8] = nearByaddresses.get(1).substring(1, nearByaddresses.get(1).length()-1);
+        log.writeLog(this, LogTypes.INFO, "getLastKnownPosition() processed");
 
         return editedLine;
     }
