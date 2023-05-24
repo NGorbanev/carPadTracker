@@ -9,6 +9,8 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.sql.Array;
+import java.util.Arrays;
 
 public class Main {
     //public static int DEFAULT_TG_CHAT = -484021021;
@@ -24,7 +26,7 @@ public class Main {
                 if (recordsCount < lr.getFileDataLength()) {
                     log.writeLog("main", LogTypes.INFO, "new record detected");
                     String report = makeReport(lr);
-                    log.writeLog("main", LogTypes.INFO, "Report text: " + report.toString());
+                    //log.writeLog("main", LogTypes.INFO, "Report text: " +  report.toString());
                     sendReportToTelegram(report); // enable / disable report to TG sending
                     log.writeLog("main", LogTypes.INFO, "Report is posted to TG, chatId: " + DEFAULT_TG_CHAT);
                     recordsCount = lr.getFileDataLength();
@@ -38,12 +40,7 @@ public class Main {
     }
 
     public static String makeReport(LogReader lr){
-        System.out.println("Данные из последней записи в логе:\n");
         String[] reportFull = lr.getLastKnownPosition();
-        //for (String part: reportFull){
-        //    System.out.println(" - " + part.trim());
-        //}
-
         String batIcon;
         if (Integer.valueOf(reportFull[6]) < TABLET_CRITICAL_BATTERY_LEVEL) batIcon = "🪫";
         else batIcon = "🔋";
@@ -59,6 +56,8 @@ public class Main {
         report.append("%0A - " + reportFull[7]);
         report.append("%0A - " + reportFull[8] + "%0A");
         log.writeLog("main", LogTypes.INFO, "Report generated");
+        log.writeLog("main", LogTypes.INFO, "Report source data: ");
+        Arrays.asList(reportFull).forEach(line -> System.out.println("- " + line));
         return report.toString();
     }
 
