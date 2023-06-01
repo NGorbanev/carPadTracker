@@ -35,6 +35,7 @@ public class CoordsConverter {
                 .build();
         try{
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() != 200) throw new RuntimeException("Server response error");
             JsonElement elements = JsonParser.parseString(response.body());
             JsonArray jsonElements = elements.getAsJsonArray();
             for (JsonElement element : jsonElements){
@@ -43,7 +44,10 @@ public class CoordsConverter {
                 nearByAddresses.add(String.valueOf(fullInfo.get("value")));
             }
         } catch (IOException | InterruptedException ex) {
-            log.writeLog(this, LogTypes.WARN, "HTTP client error: \n" + ex.getMessage());
+            log.writeLog(this, LogTypes.WARN, "HTTP client error: " + ex.getMessage());
+            nearByAddresses.add("Address detection error has happened");
+            nearByAddresses.add("Error details: " + ex.getMessage());
+            return nearByAddresses;
         }
         log.writeLog(this, LogTypes.INFO, "Success");
         return nearByAddresses;
