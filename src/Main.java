@@ -49,8 +49,7 @@ public class Main {
             if (Integer.valueOf(reportFull[6]) < TABLET_CRITICAL_BATTERY_LEVEL) batIcon = "🪫";
             else batIcon = "🔋";
         } catch (RuntimeException ex) {
-            sendReportToTelegram("Some error at a report has happened: " + ex.getMessage() +
-                    "%0ACheck logs source file ");
+            sendReportToTelegram("Some error at a report has happened. %0ACheck logs source file ");
         }
             //StringBuilder report = new StringBuilder();
             report.append("Данные по позиции авто:%0A");
