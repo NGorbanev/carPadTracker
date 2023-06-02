@@ -12,7 +12,7 @@ import java.net.http.HttpResponse;
 import java.util.Arrays;
 
 public class Main {
-    private static final String APP_VERSION = "1.1.6";
+    private static final String APP_VERSION = "1.1.7";
 
     //public static int DEFAULT_TG_CHAT = -484021021;
     public static int DEFAULT_TG_CHAT = 203120607;
