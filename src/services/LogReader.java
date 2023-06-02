@@ -19,6 +19,7 @@ public class LogReader {
 
     public int getFileDataLength(){
         loadData();
+        log.writeLog(this, LogTypes.TRACE, "Waiting for new records");
         return this.fileData.length;
     }
 
